@@ -35,6 +35,11 @@ pool
         id INT AUTO_INCREMENT PRIMARY KEY,
         data VARCHAR(255));`
     )
+    .then(
+        pool.query(
+            `INSERT INTO tbl_test (data) VALUES ('data #1'), ('data #2'), ('data #3');`
+        )
+    )
     .catch((err) => {
         console.log('Error creating table: ', err);
     });
