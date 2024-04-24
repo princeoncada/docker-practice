@@ -47,6 +47,7 @@ pool
 // ***********************
 // QUERIES AND ROUTES HERE
 // ***********************
+
 app.get('/data', async (req, res) => {
     try {
         const [rows, fields] = await pool.query('SELECT * FROM tbl_test');
