@@ -8,13 +8,15 @@ This project is a full-stack application using Docker to containerize and manage
 - `nginx`: Web server and reverse proxy using Nginx.
 - `database`: MySQL database configuration
 
-<br></br>
-# Inital Project Files
 ### Prerequisites
 - Docker
 - Node.js
 - npm
 - git
+
+<br></br>
+# Inital Project Files
+
 ### Directory Structure
 Create the main project directory and navigate into it:
 ```
