@@ -21,7 +21,7 @@ after_success:
 
 deploy:
   provider: elasticbeanstalk
-  region: "$ap-southeast-2"
+  region: "ap-southeast-2"
   app: "docker-practice"
   env: "Docker-practice-env"
   bucket_name: "elasticbeanstalk-ap-southeast-2-891377335706"
