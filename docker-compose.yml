@@ -21,4 +21,4 @@ services:
     mem_limit: 128m
     hostname: nginx
     ports:
-      - '80:80'
+      - '4000:80'
