@@ -1,0 +1,56 @@
+version: "3"
+services:
+    client:
+        build:
+            context: ./client
+            dockerfile: Dockerfile.dev
+        volumes:
+            - ./client:/app
+            - /app/node_modules
+        ports:
+            - "3000:3000"
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+
+    nginx:
+        restart: always
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile.dev
+        ports:
+            - "4000:80"
+        depends_on:
+            - client
+            - api
+
+    api:
+        build:
+            context: ./server
+            dockerfile: Dockerfile.dev
+        volumes:
+            - ./server:/usr/src/app
+            - /usr/src/app/node_modules
+        ports:
+            - "5000:5000"
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+            - MYSQLUSER=root
+            - MYSQLHOST=database
+            - MYSQLDATABASE=mydb
+            - MYSQLPASSWORD=password
+            - MYSQLPORT=3306
+        depends_on:
+            - database
+
+    database:
+        image: mysql:5.7
+        environment:
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=mydb
+        ports:
+            - "3306:3306"
+        volumes:
+            - db-data:/var/lib/mysql
+
+volumes:
+    db-data:
